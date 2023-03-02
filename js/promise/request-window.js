@@ -1,9 +1,8 @@
 async function run(idArray, max) {
     const pool = [];
-    for (let i = 0; i < idArray.length; i++) {
-        let promise = fetch(idArray[i]);
+    for (const item of idArray) {
+        let promise = fetch(item);
         promise.then((res) => {
-            console.log(`id${res}的请求已经处理完毕,当前并发为${pool.length}`);
             pool.splice(pool.indexOf(promise), 1);
         })
         pool.push(promise);
